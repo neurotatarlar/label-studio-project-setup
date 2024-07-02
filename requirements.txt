@@ -1,0 +1,4 @@
+typer
+label-studio-sdk
+pyyaml
+yandexcloud
