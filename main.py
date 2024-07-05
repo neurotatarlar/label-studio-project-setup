@@ -7,8 +7,7 @@ import yaml
 import yandexcloud
 from label_studio_sdk.client import LabelStudio
 from yandex.cloud.storage.v1.bucket_pb2 import CorsRule, VERSIONING_DISABLED
-from yandex.cloud.storage.v1.bucket_service_pb2 import ListBucketsRequest, CreateBucketRequest, \
-    UpdateBucketRequest
+from yandex.cloud.storage.v1.bucket_service_pb2 import ListBucketsRequest, CreateBucketRequest, UpdateBucketRequest
 from yandex.cloud.storage.v1.bucket_service_pb2_grpc import BucketServiceStub
 
 
@@ -67,26 +66,13 @@ def _setup_buckets(config, credentials, project, storages):
             print(f'Bucket `{bucket_name}` already exists')
         else:
             print(f'Creating bucket `{bucket_name}`')
-            bucket_service.Create(
-                CreateBucketRequest(
-                    folder_id=folder_id,
-                    name=bucket_name,
-                    **(storage.get('object_storage_params') or {})
-                )
-            )
+            bucket_service.Create(CreateBucketRequest(folder_id=folder_id, name=bucket_name,
+                **(storage.get('object_storage_params') or {})))
         print(f'Configuring bucket `{bucket_name}`')
         bucket_service.Update(
-            UpdateBucketRequest(
-                name=bucket_name,
-                default_storage_class='STANDARD',
-                versioning=VERSIONING_DISABLED,
-                cors=[CorsRule(
-                    allowed_methods=[CorsRule.Method.METHOD_GET],
-                    allowed_origins=['*'],
-                    allowed_headers=['*'],
-                )],
-            )
-        )
+            UpdateBucketRequest(name=bucket_name, default_storage_class='STANDARD', versioning=VERSIONING_DISABLED,
+                cors=[CorsRule(allowed_methods=[CorsRule.Method.METHOD_GET], allowed_origins=['*'],
+                    allowed_headers=['*'], )], ))
         bucket_details[bucket_name] = storage
     return bucket_details
 
@@ -112,14 +98,10 @@ def _bind_storages(config, credentials, client, ls_project, bucket_details):
         if not ty:
             raise ValueError('Storage type is required')
         elif ty == 'import':
-            storage = client.import_storage.s3.create(
-                **storage_params
-            )
+            storage = client.import_storage.s3.create(**storage_params)
             client.import_storage.s3.sync(storage.id)
         elif ty == 'export':
-            storage = client.export_storage.s3.create(
-                **storage_params
-            )
+            storage = client.export_storage.s3.create(**storage_params)
             client.export_storage.s3.sync(storage.id)
         else:
             raise ValueError(f"Unknown storage type: {ty}, expected 'import' or 'export'")
