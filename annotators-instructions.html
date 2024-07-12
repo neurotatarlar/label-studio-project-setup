@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>TT: Тамгадар кулланмасы</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+</style></head><body><article id="e09a2f87-c052-4367-a8e3-0cc713c288fc" class="page sans"><header><h1 class="page-title">TT: Тамгадар кулланмасы</h1><p class="page-description"></p></header><div class="page-body"><h1 id="ac9036f2-b43a-4d8a-8c50-ccc2e9f48348" class="">Сезнең эшегез нәрсәдә?</h1><p id="abff4178-7d79-4eb6-b2d1-c954a347fb4b" class="">Бу биремдә сез документ әгъзаларының тамга һәм чикләр фаразын тикшерәчәксез. Дөрес булмаганда тамганы үзгәртерсез һәм әгъзаның чикләрен күрсәтә торган турыпочмакларны сызырсыз. Документларның әгъзаларын тәңгәлләү һәм бер-берсеннән аеру безгә документның структурасын аңларга булыша.  Тамгалар алдан билгеләнгән. Сезгә иң дөресен сайларга кирәк булыр.</p><h1 id="470cdc78-8b73-42bf-b872-a5b1e2a97c0c" class="">Безнең максат нинди?</h1><p id="fe45a1f2-4b9d-4e8c-8b2f-6bb5c6f1fef7" class="">Документ әгъзаларның торышын белү безгә эффектив һәм җентекле итеп мәгълүматны чыгарырга мөмкинлек бирәчәк. Соңырак без бу мәгълүматтән татар теле текстлар корпусын төзәчәкбез.</p><h1 id="4f12fb15-bb01-49d1-88be-65f92460f315" class="">Нинди кораллар кирәк булачак?</h1><p id="dd5df68b-155d-4e8f-a3ee-6dd550abf07f" class="">Бу эшне Label Studio хезмәтендә башкарабыз. Ул монда: <a href="http://51.250.54.76:8080/">Label Studio</a></p><h1 id="8c38d1eb-df6d-4d3d-8773-90635338eba9" class="">Эш башлау</h1><ol type="1" id="605812e2-e2fe-42d9-953a-7e916ed00816" class="numbered-list" start="1"><li>Label Studio платформасында <a href="http://51.250.54.76:8080/user/signup">теркәлү</a>.<p id="6d05f303-ac35-4616-a1ef-b4ad56c69df8" class=""><a href="http://51.250.54.76:8080/user/signup">Label Studio</a>-га керегез. <code>Sign Up</code> төймәсенә басыгыз һәм электрон почтагызны һәм серсүзегезне кертегез. Кулланган серсүзегезне саклап калыгыз һәм аны беркем белән дә бүлешмәгез.</p><figure id="0e37d70c-b68b-4514-9410-d89263a50898" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/register.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/register.png"/></a></figure></li></ol><ol type="1" id="556f162b-6571-4307-bb39-188abe6c3659" class="numbered-list" start="2"><li>Label Studio платформасына <a href="http://51.250.54.76:8080/user/login">керү</a><p id="2bf956d6-905c-4605-938c-3ea8e9718918" class="">Теркәлү вакытында кулланган электрон почта һәм серсүзегезне кабатлап, платформага керегез.</p><figure id="f1ddfe04-d54c-4495-bdfc-778143b4b53b" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/register.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/register.png"/></a></figure></li></ol><ol type="1" id="09643ed8-8b40-4f40-ab5b-26f030702330" class="numbered-list" start="3"><li>Проектны ачу<p id="0cd19627-03bf-4b51-9ea9-697971049be8" class="">Кергәч, сез проектлар исемлеген күрерсез. <code>Document Layout Analysis</code> исемле проектына басыгыз</p><figure id="02c32e02-20ae-4693-9c18-7c34fb09c9dc" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/pick-project.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/pick-project.png"/></a></figure></li></ol><ol type="1" id="d67409e1-d7cb-40fb-a726-f921f961139d" class="numbered-list" start="4"><li>Тамгалауны башлау<p id="a4649206-7bad-4186-9502-d6de9fc9bd21" class="">Сез бирелмәләр исемлеген күрерсез. Тамгалауны башлар өчен <code>Label All Tasks</code> төймәсенә басыгыз. </p><figure id="02d23be8-fe4f-4297-acdc-3b1347e42c42" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/start-labeling.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/start-labeling.png"/></a></figure></li></ol><ol type="1" id="3bfff6a0-57d2-4dfa-80fb-44c81fd3e933" class="numbered-list" start="5"><li>Документ әгъзалары торышын тамгалау<p id="79f2d62a-c634-42e6-b35d-caccc6466cea" class="">Сез аннотацияләү өчен документының бер битен күрересез. Бит өстендә фаразланган әгъзалар турыпочмаклары сызылган. Сезгә бу турыпочмакларның чикләрен һәм тамгасын тикшерергә кирәк. Чикләр әгъзаны тулы капларга тиеш һәм шул ук вакытта чикнең шикеләннән дә күберәк булмаска тиеш.    </p><figure id="9ffdeba7-455e-472f-8604-b6ae8b13d3a8" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/workspace.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/workspace.png"/></a></figure></li></ol><ol type="1" id="359049aa-7ccd-44c2-a204-179e590723ce" class="numbered-list" start="6"><li>Торышны кабул итегез <p id="92c38de0-0d9f-4e5d-be63-ca461662ad9b" class="">Булган әгъзаларны тикшергәч, <code>Submit</code> төймәсенә басыгыз. Ул битнең аскы уң ягында. Бу сезнең үзгәрешләрне саклар һәм исәпкә алыр.</p><figure id="2fdc7cf4-5f6c-4410-a833-9ce9ae5dc5ac" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/submit.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/submit.png"/></a></figure></li></ol><h1 id="d8675c2f-dcaa-4aae-8237-fe02015de287" class="">Биремне калдырып китү</h1><p id="315836cc-b584-4be0-8359-261ca5000c14" class="">Әгәр дә сез шикләнсәгез, биремне калдырып китергә була. Сез бу биремне бетән күрмәячәксез. Биремне калдырып китү өчен, <code>Skip</code> төймәсенә басыгыз.</p><figure id="b17c87a6-a613-4c76-8d72-8c7213b5b112" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/skip.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/skip.png"/></a></figure><h1 id="3d6f2198-52ba-47d7-9a27-beb7e1727105" class="">Интерфейсны көйләү</h1><p id="286fc030-a7d0-4198-ab13-9fe7cd7802a0" class="">Сез интерфейсны үзегезчә көйли аласыз. Иң мөһиме <code>Show region labels</code> параметрын үзгәртүен тәкъдим итәм. Бу параметр өлкәләр турыпочмакларның янәшәсендә тамгаларны күрсәтәчәк.</p><figure id="aa9fe90c-3ec8-4c47-b007-6c07a784186a" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/configure-ui.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/configure-ui.png"/></a></figure><h1 id="937d3e39-6565-4107-98c5-3e720b696312" class="">Комлык</h1><p id="cd8e5ec4-5f5b-45af-a4b2-c256a1904b23" class="">Без сезнең өчен комлык проектын ясаячакбыз. Ул проект сезнең өчен генә билгеләнгән һәм сез аны ватырга курыкмагыз. Ул проект сынау өчен һәм тәҗрибә үстерү өчен генә.</p><h1 id="f539da7e-113e-4adc-a24d-877114e62453" class="">Документ бүлек төрләре</h1><h3 id="fa9768e3-2111-4a56-baba-fd7542af8fad" class=""><strong>Текст (text)</strong></h3><p id="8925fdd3-a972-4026-aeda-3057d6f4b2a2" class="">Иң төп һәм еш очрый торган төр. Һәрбер параграф ул аерым текст әгъзасы . Гадәттә беренче юлы кызыл юлдан башлана , калган юллар беренче юлдан сулрак башланалар.</p><div id="bdf59e58-f05a-4033-9b02-05ddb40f76a4" class="column-list"><div id="579cef77-56e0-470f-a198-f732430c43f8" style="width:33.333333333333336%" class="column"><figure id="e3e6a2d0-3530-402f-8006-bee5e676abf7" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/text-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/text-2.png"/></a></figure></div><div id="b53f76f3-d4f7-44d2-a07f-4f362e2f1f45" style="width:33.333333333333336%" class="column"><figure id="6ed3c81b-3b01-42bd-8bb0-6c12373d6b45" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/text-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/text-1.png"/></a></figure></div><div id="7a9d6f3b-e24c-4f1b-98cd-0dd6a1ce1622" style="width:33.33333333333333%" class="column"><figure id="1f4573d5-4134-43ee-b9e0-a2be1cb4341d" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/text-3.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/text-3.png"/></a></figure></div></div><h3 id="263ccc5a-2248-4b13-967a-a412b8efda85" class=""><strong>Рәсем (picture)</strong></h3><p id="2a4c51dc-ff0c-4b56-85fe-6e835930a2be" class="">Төп текстан аерым торган графика йәки сүрәт. Алар янында күп очракта тасвирлауны да күрергә була. </p><div id="d6620ed5-df76-47c9-8846-7085d93254f7" class="column-list"><div id="6a2fd77f-9899-4016-bd23-5ac85b1e71f4" style="width:50%" class="column"><figure id="14f03a63-8cf1-410d-a968-526032ebe3fb" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/image-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/image-1.png"/></a></figure></div><div id="1810747a-8fbd-4c3f-950c-5b07e1b0c0b0" style="width:50%" class="column"><figure id="46393d08-8055-48f5-b598-762be979125a" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/image-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/image-2.png"/></a></figure></div></div><h3 id="a55cdce8-a82f-42c0-9730-5a162826d963" class=""><strong>Рәсем тасвиры (caption)</strong></h3><p id="c8bbba39-356e-45c8-84ab-04d334db745c" class="">Рәсемне тасвирлый торган махсус текст.</p><div id="cb61e22f-0811-41f6-9f36-b8809b38c811" class="column-list"><div id="ed25663a-a409-4ec0-9c26-116ad5f8f75d" style="width:50%" class="column"><figure id="f52a39c4-9301-47e0-a2fe-9f5b0682a4b9" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/caption-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/caption-1.png"/></a></figure></div><div id="0b263440-a93d-43a7-be6d-f9baaa55ca55" style="width:50%" class="column"><figure id="f9cdc412-1624-480c-bc90-aa58738bad69" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/caption-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/caption-2.png"/></a></figure></div></div><h3 id="5d873768-2c78-46ef-87f8-e2ec2d3f07fe" class="">Бүлек башы (section-header)</h3><p id="0ca415b6-ce65-40fa-bc67-ee9a674cceaa" class="">Яңа текст бүлекне тасвирлый торган әгъза.</p><div id="9657b42a-9e7f-4e4c-ae0f-7d2d600d30b9" class="column-list"><div id="4d0cb01e-a830-4e0b-983c-d55732fda5b2" style="width:50%" class="column"><figure id="8958bca5-237b-44d3-b5cd-316990ec3418" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/section-header-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/section-header-2.png"/></a></figure></div><div id="83add834-fa0c-41de-ab64-3e8912f11881" style="width:50%" class="column"><figure id="672cde46-0678-4681-a555-d8f9ebf3f25e" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/section-header-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/section-header-1.png"/></a></figure></div></div><figure id="ee7986e2-ace3-4f8e-8868-22f49d7d57d9" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/secton-header-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/secton-header-2.png"/></a></figure><figure id="77983e7c-b674-4c8e-9f28-a61a50398b70" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/secton-header-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/secton-header-1.png"/></a></figure><h3 id="801a0e44-74d3-4355-b7cc-7fd61e23a05a" class=""><strong>Асъязма (footnote)</strong></h3><p id="367a0e38-992e-4ea4-a31d-35c000a20b76" class="">Төп текст белән сан яки билге белән бәйләнгән, бит астында булган, кечкенә текст. </p><div id="e15be7a4-eb96-44fd-a028-f6e559763d76" class="column-list"><div id="6e367b79-e884-4d16-8698-2ee791667532" style="width:50%" class="column"><figure id="745e3f0c-b698-4aad-9f2c-6f055e6f2392" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/footnote-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/footnote-2.png"/></a></figure></div><div id="a0cd6dd2-4aab-4d91-8165-066d513733fb" style="width:50%" class="column"><figure id="f692a86b-3986-4766-8cc8-0f6c62c5ac25" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/footnote-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/footnote-1.png"/></a></figure></div></div><h3 id="112bf11c-29e5-4722-9681-32783e43e6b8" class=""><strong>Формула (formula)</strong></h3><p id="0c32f98b-3fb9-4c75-a201-d2f95af533fc" class="">Аерым юлда математик тигезләмә.  </p><div id="fb876589-355f-4a70-9382-051210705055" class="column-list"><div id="9cc436c1-cb58-448d-9053-5985b2d7b0c3" style="width:50%" class="column"><figure id="7ce89809-6aa9-41eb-b041-9692e87827d1" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/formula-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/formula-1.png"/></a></figure></div><div id="8b231229-19a9-4e50-9edf-81a5638ac6de" style="width:50%" class="column"><figure id="91d33371-d72f-49d9-8002-c39d8e3224aa" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/formula-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/formula-2.png"/></a></figure></div></div><p id="82c2b743-e977-4105-99e2-f1679e28a4ae" class="">
+</p><h3 id="8e469c3b-69fd-4595-b1e0-8ccf8929f2ad" class=""><strong>Җәдвал (table)</strong></h3><p id="4a2d845b-f2be-428c-b99b-b08912154804" class=""><br/>Еш кына аергыч сызыклар белән аерылган, баганалар һәм рәтләр шәкелендә тупланган дәйтә.   <br/></p><div id="756f83d6-a4de-424c-a1e3-e0ea89b972e2" class="column-list"><div id="b3082a52-a8da-489a-a2ea-4883d24aae6f" style="width:50%" class="column"><figure id="072f8b80-69c8-4a9a-986d-21e097105a8a" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/table-1.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/table-1.png"/></a></figure></div><div id="1f5660aa-2a50-47c3-aa90-81c3dfeaccaf" style="width:50%" class="column"><figure id="d193e648-2114-445a-abf7-155387f24add" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/table-2.png"><img src="https://storage.yandexcloud.net/annotators-instruction-media/table-2.png"/></a></figure></div></div><h3 id="ff273d38-e4ec-4e25-83c9-cac8731d4569" class=""><strong>Исемлек тармагы (list-item)</strong></h3><p id="216e2879-08f6-4f16-bcd9-7564b27ac4e1" class="">Исемлекнең бер тармагы. Гадәттә исемлекнең икенче һәм калган юллар уңрак башланалар.</p><figure id="65605b63-10c7-4964-9f8e-44ff36ba8ba2" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/list-item-1.png"><img style="width:288px" src="https://storage.yandexcloud.net/annotators-instruction-media/list-item-1.png"/></a></figure><h3 id="5292b9e0-a1f7-40ec-9967-0b71fd56e26e" class=""><strong>Бит өсбашы (page-header)</strong></h3><p id="0e97bf77-210f-45b4-bb5e-31900e508d5c" class="">Битнең өс ягында урнашкан, төп текстан аерым торган, кабатланучан әгъза. Мәсәлән, бит нумеры, бүлекнең исеме. </p><div id="713e4ffa-002a-46d5-824c-7e2e9600fa49" class="column-list"><div id="c0e67911-5f54-4c1f-a6d9-40410052a7a5" style="width:50%" class="column"><figure id="d4f9edff-fb70-405b-a5bb-a30b75541bb4" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/page-header-1.png"><img style="width:708px" src="https://storage.yandexcloud.net/annotators-instruction-media/page-header-1.png"/></a></figure></div><div id="174c2c2c-0b9f-44b7-949f-6265a84b7fa7" style="width:50%" class="column"><figure id="7b541a7b-5ada-4877-bfc5-f26c5bb2be21" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/page-header-2.png"><img style="width:1204px" src="https://storage.yandexcloud.net/annotators-instruction-media/page-header-2.png"/></a></figure></div></div><h3 id="bb43e869-484a-4167-a609-63771f7a76bf" class=""><strong>Бит асъягы (page-footer)</strong></h3><p id="6ac582b6-6baf-4485-b69e-1dcfc5d0e554" class="">Битнең ас ягында урнашкан, төп тексттан аерым торган, кабатланучан әгъзалар. Мәсәлән, бит нумеры.</p><div id="10dbdfae-f343-420d-98ce-294eaaec0e3f" class="column-list"><div id="49358732-5392-47b7-a463-79e0ba12493f" style="width:50%" class="column"><figure id="601ea457-9424-4e7f-9f0a-14a7b02f1f2c" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/page-footer-1.png"><img style="width:1204px" src="https://storage.yandexcloud.net/annotators-instruction-media/page-footer-1.png"/></a></figure></div><div id="35ae8fcb-2142-4b44-b806-d32dcd28e4fc" style="width:50%" class="column"><figure id="d46e7a47-d744-4007-86c3-ed7cc96396da" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/page-footer-2.png"><img style="width:1204px" src="https://storage.yandexcloud.net/annotators-instruction-media/page-footer-2.png"/></a></figure></div></div><h3 id="16854dca-49bd-4137-b22a-6a449510be37" class=""><strong>Баш исем (title)</strong></h3><p id="492e1aa6-ae40-4b7b-ad5c-fd7dcd843b4f" class="">Гомум документның исеме. Гадәттә зур шрифт белән билгеләнгән һәм беренче биттә урнашыла.</p><div id="18b1cc4a-fde1-4618-830c-85ef6d0bbdec" class="column-list"><div id="8029ef4f-d57c-463b-a67b-05b47ce156f7" style="width:50%" class="column"><figure id="6d78b2d7-effa-43e8-991e-1cb1adbb98ba" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/title-1.png"><img style="width:432px" src="https://storage.yandexcloud.net/annotators-instruction-media/title-1.png"/></a></figure></div><div id="00603c13-a40c-4a45-8fce-cff094b53260" style="width:50%" class="column"><figure id="41e721f0-3772-4bc8-8e44-3299330394e1" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/title-2.png"><img style="width:384px" src="https://storage.yandexcloud.net/annotators-instruction-media/title-2.png"/></a></figure></div></div><h3 id="1fedfd2b-a253-4a96-afc6-66593d269660" class=""><strong>Шигырь (poetry)</strong></h3><p id="364c4ad2-3757-4877-b627-ffd81dd0c29d" class="">Шигырь шәкелендә булган текст. Гадәттә махсус турайтулар белән һәм махсус юл күчерүләр белән билгеләнгән.</p><div id="c8064d10-a92e-469a-8f43-49172b0f8b56" class="column-list"><div id="73c71952-f55a-4f1f-992f-718e6f21eabb" style="width:50%" class="column"><figure id="1d902a66-04c0-4a74-83d2-333563345d77" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/poetry-1.png"><img style="width:1209px" src="https://storage.yandexcloud.net/annotators-instruction-media/poetry-1.png"/></a></figure></div><div id="af31dd4d-fbe4-4731-b665-e722b3289e73" style="width:50%" class="column"><figure id="962d4ad0-1d9b-442a-a61c-91c95a6b46cf" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/poetry-2.png"><img style="width:1209px" src="https://storage.yandexcloud.net/annotators-instruction-media/poetry-2.png"/></a></figure></div></div><h1 id="f3903523-e7df-4d85-8b14-9e0fd3a98e6f" class="">Яхшы аннотацияләнгән эш</h1><ul id="cf4b8ea8-8163-47d0-ab3d-a0e4c25eb465" class="bulleted-list"><li style="list-style-type:disc">Документ әгъзасенең тамгасы дөрес фаразланмаган булса,  аның тамгасын дөрескә үзгәртегез.<figure id="d9a95335-32b3-496e-94b6-219894e75c5c" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-correct-label.png"><img style="width:803px" src="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-correct-label.png"/></a></figure></li></ul><ul id="c7ce4787-cb11-49b1-bc5e-d936817b3a05" class="bulleted-list"><li style="list-style-type:disc"> Әгъза чикләре дөрес билгеләнмәгән булса, сез чикләрен дөрес итеп үзгәртегез.<figure id="27313f31-d198-476e-9f32-ba079c52c6c9" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-correct-bounds.png"><img style="width:551px" src="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-correct-bounds.png"/></a></figure></li></ul><ul id="bd0d2246-9b53-4860-84f6-7f5654ab58ae" class="bulleted-list"><li style="list-style-type:disc">Ике яки күберәк әгъза бер өлкәгә чикләнгән булса, аларны һәрберсен үз өлкәгә чикләгез һәм дөрес тамга асыгыз.   <figure id="b8cd5220-9f0f-46cc-87bb-b5bf49716876" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-separate-regions-1.png"><img style="width:529px" src="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-separate-regions-1.png"/></a></figure><figure id="9701153f-411d-4f5c-8493-bfb52fa7e7e7" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-separate-regions-2.png"><img style="width:528px" src="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-separate-regions-2.png"/></a></figure></li></ul><ul id="8de8e119-d9c0-42c4-984e-bcbe05d3584e" class="bulleted-list"><li style="list-style-type:disc">Әгъза бөтенләй фаразланмаган булса, аны яңа өлкәгә чикләгез һәм тамга асыгыз. <figure id="002b4558-42cb-43a6-bc87-1280bd40e579" class="image"><a href="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-all-layouts.png"><img style="width:744px" src="https://storage.yandexcloud.net/annotators-instruction-media/good-labeling-all-layouts.png"/></a></figure></li></ul><p id="f8a7cdd9-905d-4e9e-b709-4546078feeb5" class="">
+</p><h1 id="21b99913-049d-4b96-8f37-04e00867e01c" class="">Тизтөймәләр</h1><p id="5b1f8a7b-a598-4158-aaba-71f15ff17115" class="">Эшегезне тизәйтү өчен тизтөймәләрне куллана аласыз</p><table id="59367912-3d26-4458-8cfe-56e584e62166" class="simple-table"><tbody><tr id="cf1391ca-5c00-448f-ba53-57000ffd8d34"><td id="=&lt;KA" class="" style="width:258.6640625px">ctrl + enter</td><td id="Jd&gt;p" class="">Торышны кабул итү.</td></tr><tr id="6b7916c3-d44d-4d9a-b8a0-3d4cfa3d4b44"><td id="=&lt;KA" class="" style="width:258.6640625px">alt + enter</td><td id="Jd&gt;p" class="">Торыш үзгәрешләрен яңарту.</td></tr><tr id="2b5e1296-c737-4eaa-92fa-632aa6af33b2"><td id="=&lt;KA" class="" style="width:258.6640625px">ctrl + backspace OR cmd + backspace</td><td id="Jd&gt;p" class="">Булган өлкәләрне бетерү.</td></tr><tr id="67b81d73-7525-4693-8be9-17d77f6823b7"><td id="=&lt;KA" class="" style="width:258.6640625px">escape OR u</td><td id="Jd&gt;p" class="">Сайланган өлкәдән чыгу.</td></tr><tr id="f92a6a9e-8977-4b3f-b621-95e8469a1f0e"><td id="=&lt;KA" class="" style="width:258.6640625px">backspace</td><td id="Jd&gt;p" class="">Сайланган өлкәне бетерү.</td></tr><tr id="48ae95de-5bd8-476b-8652-6036ac43683f"><td id="=&lt;KA" class="" style="width:258.6640625px">alt + .</td><td id="Jd&gt;p" class="">Өлкәләр исемлеге аша алга узу.</td></tr><tr id="ffd8220f-fbdb-44f0-8850-84f96b0d8db8"><td id="=&lt;KA" class="" style="width:258.6640625px">alt + h</td><td id="Jd&gt;p" class="">Сайланган өлкәне качыру.</td></tr><tr id="79536d88-c264-417a-92fb-4d37df54574e"><td id="=&lt;KA" class="" style="width:258.6640625px">ctrl + d OR cmd + d</td><td id="Jd&gt;p" class="">Сайланган өлкәнең кушын ясау.</td></tr><tr id="336082e1-f1b0-4810-a4ad-9e08771b4e04"><td id="=&lt;KA" class="" style="width:258.6640625px">ctrl + z</td><td id="Jd&gt;p" class="">Соңгы үзгәрешне кире кагу</td></tr><tr id="5a42709a-4dbb-4a78-a196-c09ff15ee65c"><td id="=&lt;KA" class="" style="width:258.6640625px">1</td><td id="Jd&gt;p" class="">Бит өсбашын сайлау</td></tr><tr id="ebd3f732-4103-475e-8cd1-453a27b21931"><td id="=&lt;KA" class="" style="width:258.6640625px">2</td><td id="Jd&gt;p" class="">Бүлек башын сайлау</td></tr><tr id="21d2ec8c-392e-47e7-957a-85c660414a3e"><td id="=&lt;KA" class="" style="width:258.6640625px">3</td><td id="Jd&gt;p" class="">Текст сайлау</td></tr><tr id="99afe6b2-66c7-4111-b8ca-a70b639c0279"><td id="=&lt;KA" class="" style="width:258.6640625px">4</td><td id="Jd&gt;p" class="">Баш исем сайлау</td></tr><tr id="83f39994-d600-40bf-bd75-18d52e52399d"><td id="=&lt;KA" class="" style="width:258.6640625px">5</td><td id="Jd&gt;p" class="">Шигырь сайлау</td></tr><tr id="8a0d85b5-3a3a-4255-a172-d04c76b1e2db"><td id="=&lt;KA" class="" style="width:258.6640625px">6</td><td id="Jd&gt;p" class="">Асъязма сайлау</td></tr><tr id="2377f266-4003-4ea2-bd3c-89535aaeca82"><td id="=&lt;KA" class="" style="width:258.6640625px">7</td><td id="Jd&gt;p" class="">Бит асъягын сайлау</td></tr><tr id="7984a011-d4f9-4c55-9da8-6b03a907e03c"><td id="=&lt;KA" class="" style="width:258.6640625px">8</td><td id="Jd&gt;p" class="">Рәсем сайлау</td></tr><tr id="645741aa-8d07-495a-933b-0a0a88494863"><td id="=&lt;KA" class="" style="width:258.6640625px">9</td><td id="Jd&gt;p" class="">Рәсем тасвирын сайлау</td></tr><tr id="31511f8e-7c46-40aa-974b-897cb2f51385"><td id="=&lt;KA" class="" style="width:258.6640625px">0</td><td id="Jd&gt;p" class="">Формула сайлау</td></tr><tr id="ffdc53e6-d8b4-4186-bd72-e6d98e3cc28a"><td id="=&lt;KA" class="" style="width:258.6640625px">-</td><td id="Jd&gt;p" class="">Җәдвәлне сайлау</td></tr><tr id="c5b5e2b2-19df-43c3-aff1-4866a6c4b7f6"><td id="=&lt;KA" class="" style="width:258.6640625px">=</td><td id="Jd&gt;p" class="">Исемлек тармагын сайлау </td></tr></tbody></table><h1 id="c0ae90e9-9a7a-4a5c-8bbb-d1e29217f8f6" class="">Кирәк ярдәм?</h1><p id="b314fb88-c6b7-4cc6-a279-0f5b888c3f43" class="">Берәр сорау туса, аны бирергә оялмагыз. Һәм биремне калдырып китү мөмкинлеге турында онытмагыз.</p><h1 id="abec4492-0e32-425c-b3c8-9d9dcbf5ddac" class="">Файдалы сылтамалар</h1><ul id="45e3b679-bcc7-4e4c-baf7-8dcfdc458a1e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://labelstud.io/guide/get_started">Label Studio&#x27;s документациясе</a></li></ul><ul id="39ba4227-8732-4398-ae03-4da130628c8f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://raw.githubusercontent.com/DS4SD/DocLayNet/main/assets/DocLayNet_Labeling_Guide_Public.pdf">Labeling guide by DocLayNet</a></li></ul><ul id="19b22b00-a764-4b6d-8c5d-82599220f2b5" class="bulleted-list"><li style="list-style-type:disc"><a href="https://huggingface.co/hantian/yolo-doclaynet">Yolo model for layout analysis</a></li></ul><p id="50874918-db00-456f-be06-24dd7f43ad28" class=""><a href="https://storage.yandexcloud.net/annotators-instruction-media/page-header-1.png">https://storage.yandexcloud.net/annotators-instruction-media/page-header-1.png</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

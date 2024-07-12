@@ -1,4 +1,5 @@
 typer
-label-studio-sdk
+label-studio-sdk==1.0.3
 pyyaml
 yandexcloud
+mergedeep

@@ -1,0 +1,9 @@
+project:
+  details:
+    title: "Документ Торышы | Document Layout"
+    description: |
+      Документ әгъзаларының тамга һәм чикләр фаразын тикшерү | Check prediction of labels and bounds of document layouts
+    color: "#008000"
+  storages:
+    import:
+      copy_from_bucket: []
