@@ -3,15 +3,14 @@ This script creates manifests in Label Studio, creates buckets in S3 object stor
 Project described in `template.yaml` file, credentials described in `credentials.yaml` file.
 """
 
+import copy
 import os
 
+import boto3
+import requests
 import yaml
-import yandexcloud
 from label_studio_sdk.client import LabelStudio
 from mergedeep import merge
-from yandex.cloud.storage.v1.bucket_pb2 import CorsRule, VERSIONING_DISABLED
-from yandex.cloud.storage.v1.bucket_service_pb2 import ListBucketsRequest, CreateBucketRequest, UpdateBucketRequest
-from yandex.cloud.storage.v1.bucket_service_pb2_grpc import BucketServiceStub
 
 
 def _load_yaml(file_path: str):
@@ -26,10 +25,10 @@ def _create_project(config, manifest):
     """
     Create manifests in Label Studio, create buckets in S3 object storage and bind them to manifests
 
-    :param config: configuration file with details of the project
-    :param credentials: credentials file with secrets to access Label Studio and S3 object storage
+    :param config: dict, configuration
+    :param manifest: dict, project manifest
     """
-    client = _client(config)
+    ls_client = _label_studio_client(config)
     project_manifest = manifest['project']
     details = project_manifest['details']
     # Create or update project
@@ -39,50 +38,63 @@ def _create_project(config, manifest):
             details['expert_instruction'] = file.read()
     if not title:
         raise ValueError('Project title is required')
-    if ls_project := _find_project_by_title(title, client):
-        ls_project = client.projects.update(ls_project.id, **details)
+    if ls_project := _find_project_by_title(title, ls_client):
+        ls_project = ls_client.projects.update(ls_project.id, **details)
         print(f"Updated project: {ls_project.dict()}")
     else:
-        ls_project = client.projects.create(**details)
+        ls_project = ls_client.projects.create(**details)
         print(f"Created project: {ls_project.dict()}")
 
     storages = project_manifest.get('storages') or []
     # Create or update objects storage's buckets
-    bucket_details = _setup_buckets(config, ls_project, storages)
+
+    s3_client = _s3_client(config)
+    bucket_details = _setup_buckets(s3_client, ls_project, storages)
 
     # Bind storages to project
-    _bind_storages(config, client, ls_project, bucket_details)
+    _bind_storages(config, ls_client, ls_project, bucket_details)
+
+    # Additionally set annotations model version
+    # This exists only because of SDK does not support it out of the box
+    resp = requests.patch(
+        url=f"{config['label_studio']['url']}/api/projects/{ls_project.id}",
+        data=f'{{"model_version": "{project_manifest["model_version"]}"}}',
+        headers={
+            'Authorization': f"Token {config['label_studio']['access_token']}",
+            'Content-Type': 'application/json'
+        }
+    )
+    resp.raise_for_status()
 
 
-def _setup_buckets(config, project, storages):
-    if not config['yc']['object_storage']:
-        print('No storages found')
-        return
-
-    token = config['yc']['service_account']['token']
-    sdk = yandexcloud.SDK(token=token)
-    folder_id = config['yc']['object_storage']['folder']
-
-    bucket_service = sdk.client(BucketServiceStub)
-    existed_buckets = [bucket.name for bucket in bucket_service.List(ListBucketsRequest(folder_id=folder_id)).buckets]
+def _setup_buckets(client, ls_project, storages):
+    existed_buckets = [f['Name'] for f in client.list_buckets().get('Buckets', [])]
 
     bucket_details = {}
-    for ty in ['export', 'import']:
-        storage = storages.get(ty)
-        bucket_name = f"ls-{project.id}-{storage['title']}"
+    for storage in storages:
+        bucket_name = storage['title'].format(project=ls_project.id).lower()
         if bucket_name in existed_buckets:
             print(f'Bucket `{bucket_name}` already exists')
         else:
             print(f'Creating bucket `{bucket_name}`')
-            bucket_service.Create(CreateBucketRequest(folder_id=folder_id, name=bucket_name,
-                                                      **(storage.get('object_storage_params') or {})))
+            client.create_bucket(Bucket=bucket_name)
         print(f'Configuring bucket `{bucket_name}`')
-        bucket_service.Update(
-            UpdateBucketRequest(name=bucket_name, default_storage_class='STANDARD', versioning=VERSIONING_DISABLED,
-                                cors=[CorsRule(allowed_methods=[CorsRule.Method.METHOD_GET], allowed_origins=['*'],
-                                               allowed_headers=['*'], )], ))
+        client.put_bucket_cors(
+            Bucket=bucket_name,
+            CORSConfiguration={
+                'CORSRules': [{
+                    'AllowedHeaders': ['*'],
+                    'AllowedMethods': ['GET'],
+                    'AllowedOrigins': ['*'],
+                    'ExposeHeaders': [
+                        "x-amz-server-side-encryption",
+                        "x-amz-request-id",
+                        "x-amz-id-2"
+                    ],
+                    "MaxAgeSeconds": 3000
+                }]
+            })
         bucket_details[bucket_name] = storage
-        bucket_details[bucket_name]['type'] = ty
     return bucket_details
 
 
@@ -93,8 +105,8 @@ def _bind_storages(config, client, ls_project, bucket_details):
     aws_secret_access_key = config['yc']['service_account']['aws_secret_access_key']
 
     for bucket_name, details in bucket_details.items():
-        ty = details['type']
-        title = details['title']
+        ty = details['ty']
+        title = details['title'].format(project=ls_project.id)
         storage_params = details.get('ls_storage_params') or {}
         # for unknown reason, region_name is deserialized as tuple
         storage_params['region_name'] = region_name[0]
@@ -133,10 +145,23 @@ def _bind_storages(config, client, ls_project, bucket_details):
             raise ValueError(f"Unknown storage type: {ty}, expected 'import' or 'export'")
 
 
-def _client(config):
+def _label_studio_client(config):
     base_url = config['label_studio']['url']
     access_token = config['label_studio']['access_token']
     return LabelStudio(base_url=base_url, api_key=access_token)
+
+
+def _s3_client(config):
+    s3endpoint = config['yc']['object_storage']['endpoint']
+    aws_access_key_id = config['yc']['service_account']['aws_access_key_id']
+    aws_secret_access_key = config['yc']['service_account']['aws_secret_access_key']
+
+    return boto3.client(
+        service_name='s3',
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key,
+        endpoint_url=s3endpoint
+    )
 
 
 def _find_project_by_title(title, ls):
@@ -153,7 +178,7 @@ def _create_projects():
     for _, _, files in os.walk('manifests'):
         for f in files:
             manifest = _load_yaml(os.path.join('manifests', f))
-            merged = merge(template, manifest)
+            merged = merge(copy.deepcopy(template), manifest)
             _create_project(config, merged)
 
 

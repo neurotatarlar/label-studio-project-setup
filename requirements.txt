@@ -1,5 +1,5 @@
 typer
 label-studio-sdk==1.0.3
 pyyaml
-yandexcloud
 mergedeep
+boto3

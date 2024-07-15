@@ -1,0 +1,16 @@
+label_studio:
+  url: http://51.250.54.76:8080
+  # Credentials for Label Studio
+  # Can be obtained by path '/user/account' on the Label Studio instance
+  access_token: <SET ME>
+
+yc:
+  service_account:
+    # Service account key for Yandex.Cloud. Can be obtained from the Yandex.Cloud console
+    aws_access_key_id: <SET ME>
+    aws_secret_access_key: <SET ME>
+  object_storage:
+    region_name: ru-central1-b
+    endpoint: "https://storage.yandexcloud.net"
+
+
