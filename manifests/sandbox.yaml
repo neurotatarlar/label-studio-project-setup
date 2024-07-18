@@ -1,14 +1,13 @@
 project:
   model_version: yolov10b
   details:
-    title: "Документ Торышы | Document Layout"
+    title: "Sandbox"
     description: |
-      Документ әгъзаларының тамга һәм чикләр фаразын тикшерү | Check prediction of labels and bounds of document layouts
-    color: "#008000"
+      Бу проект сынау һәм тикшерү өчен генә. Монда экспериментлар ясарга курыкмагыз.
   storages:
     # `ls_storage_params` matches the Label Studio's `import_storage` and `export_storage` CREATE methods
     # see full list here https://api.labelstud.io/api-reference/api-reference/import-storage/s-3/create
-    - title: "label-studio-import-tasks"
+    - title: "label-studio-sandbox-tasks"
       ty: "import"
       ls_storage_params:
         regex_filter: ".*.json"
@@ -24,7 +23,7 @@ project:
         presign_ttl: 128
         recursive_scan: true
         use_blob_urls: false
-    - title: "label-studio-export-annotations"
+    - title: "label-studio-sandbox-export"
       ty: "export"
       ls_storage_params:
         can_delete_objects: false

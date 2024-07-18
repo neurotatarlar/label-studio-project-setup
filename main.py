@@ -54,17 +54,6 @@ def _create_project(config, manifest):
     # Bind storages to project
     _bind_storages(config, ls_client, ls_project, bucket_details)
 
-    # Additionally set annotations model version
-    # This exists only because of SDK does not support it out of the box
-    resp = requests.patch(
-        url=f"{config['label_studio']['url']}/api/projects/{ls_project.id}",
-        data=f'{{"model_version": "{project_manifest["model_version"]}"}}',
-        headers={
-            'Authorization': f"Token {config['label_studio']['access_token']}",
-            'Content-Type': 'application/json'
-        }
-    )
-    resp.raise_for_status()
 
 
 def _setup_buckets(client, ls_project, storages):
