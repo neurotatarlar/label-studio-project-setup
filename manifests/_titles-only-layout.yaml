@@ -1,14 +1,14 @@
 project:
   model_version: yolov10b
   details:
-    title: "Документ Торышы | Document Layout"
+    title: "Документның баш битен тамгалау | Document Layout"
     description: |
-      Документ әгъзаларының тамга һәм чикләр фаразын тикшерү | Check prediction of labels and bounds of document layouts
-    color: "#008000"
+      Бу проектта документның беренче бите генә тамгалана һәм монда гына башисем(title) әгъзасы бар
+    color: "#5234EB"
   storages:
     # `ls_storage_params` matches the Label Studio's `import_storage` and `export_storage` CREATE methods
     # see full list here https://api.labelstud.io/api-reference/api-reference/import-storage/s-3/create
-    - title: "label-studio-import-tasks"
+    - title: "label-studio-import-title-tasks"
       ty: "import"
       ls_storage_params:
         regex_filter: ".*.json"

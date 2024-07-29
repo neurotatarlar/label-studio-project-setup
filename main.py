@@ -7,7 +7,6 @@ import copy
 import os
 
 import boto3
-import requests
 import yaml
 from label_studio_sdk.client import LabelStudio
 from mergedeep import merge
@@ -53,7 +52,6 @@ def _create_project(config, manifest):
 
     # Bind storages to project
     _bind_storages(config, ls_client, ls_project, bucket_details)
-
 
 
 def _setup_buckets(client, ls_project, storages):
@@ -116,9 +114,8 @@ def _bind_storages(config, client, ls_project, bucket_details):
                     break
             else:
                 print(f"Creating storage `{title}`")
-                storage = client.import_storage.s3.create(**storage_params)
+                client.import_storage.s3.create(**storage_params)
                 print(f"Syncing storage `{title}`")
-            client.import_storage.s3.sync(storage.id)
         elif ty == 'export':
             for storage in client.export_storage.s3.list(project=ls_project.id):
                 if storage.title == title:
@@ -127,9 +124,8 @@ def _bind_storages(config, client, ls_project, bucket_details):
                     break
             else:
                 print(f"Creating storage `{title}`")
-                storage = client.export_storage.s3.create(**storage_params)
+                client.export_storage.s3.create(**storage_params)
                 print(f"Syncing storage `{title}`")
-            client.export_storage.s3.sync(storage.id)
         else:
             raise ValueError(f"Unknown storage type: {ty}, expected 'import' or 'export'")
 
@@ -137,7 +133,8 @@ def _bind_storages(config, client, ls_project, bucket_details):
 def _label_studio_client(config):
     base_url = config['label_studio']['url']
     access_token = config['label_studio']['access_token']
-    return LabelStudio(base_url=base_url, api_key=access_token)
+    # timeout is set to 120 seconds because updating storage causes it syncing, and it can take a while
+    return LabelStudio(base_url=base_url, api_key=access_token, timeout=120)
 
 
 def _s3_client(config):
