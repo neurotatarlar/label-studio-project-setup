@@ -13,18 +13,18 @@ project:
       <View style="display:flex;align-items:start;gap:8px;flex-direction:row-reverse">
         <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="true" crosshair="true"/>
         <RectangleLabels name="label" toName="image" strokeWidth="2" showInline="false">
-          <Label value="Бит өсбашы / Заголовок страницы" alias="page-header" background="LightSkyBlue" hotkey="1" showAlias="true"/>
-          <Label value="Бүлек башы / Заголовок раздела" alias="section-header" background="Olive" hotkey="2" showAlias="true"/>
-          <Label value="Текст" alias="text" background="PaleGreen" hotkey="3" showAlias="true"/>
-          <Label value="Баш исем / Титульный заголовок" alias="title" background="DarkGreen" hotkey="4" showAlias="true"/>
-          <Label value="Шигырь / Стихи" alias="poetry" background="MediumSeaGreen" hotkey="5" showAlias="true"/>
-          <Label value="Асъязма / Сноска" alias="footnote" background="Tan" hotkey="6" showAlias="true"/>
-          <Label value="Бит асъягы / Нижний колонтитул" alias="page-footer" background="Peru" hotkey="7" showAlias="true"/>
-          <Label value="Рәсем / Изображение" alias="picture" background="MediumPurple" hotkey="8" showAlias="true"/>
-          <Label value="Рәсем тасвиры / Подпись к изобр." alias="caption" background="MediumPurple" hotkey="9" showAlias="true"/>
-          <Label value="Математик формула / Матем. формула" alias="formula" background="Gold" hotkey="0" showAlias="true"/>
-          <Label value="Җәдвал / Таблица" alias="table" background="DarkKhaki" hotkey="-" showAlias="true"/>
-          <Label value="Исемлек тармагы / Элемент списка" alias="list-item" background="DarkSeaGreen" hotkey="=" showAlias="true"/>
+          <Label value="Бит өсбашы | Заголовок страницы |" alias="page-header" background="#4169E1" hotkey="1" showAlias="true"/>
+          <Label value="Текст | Текст |" alias="text" background="LightGreen" hotkey="2" showAlias="true"/>
+          <Label value="Бүлек башы | Заголовок раздела |" alias="section-header" background="DarkKhaki" hotkey="3" showAlias="true"/>
+          <Label value="Асъязма | Сноска |" alias="footnote" background="#2F4F4F" hotkey="4" showAlias="true"/>
+          <Label value="Шигырь | Стихи |" alias="poetry" background="#800000" hotkey="5" showAlias="true"/>
+          <Label value="Бит асъягы | Нижний колонтитул |" alias="page-footer" background="Coral" hotkey="6" showAlias="true"/>
+          <Label value="Рәсем | Изображение |" alias="picture" background="#008080" hotkey="7" showAlias="true"/>
+          <Label value="Җәдвал | Таблица |" alias="table" background="#DAA520" hotkey="8" showAlias="true"/>
+          <Label value="Рәсем/җәдвал тасвиры | Подпись к изобр./табл. |" alias="caption" background="#8B4513" hotkey="9" showAlias="true"/>
+          <Label value="Формула | Формула |" alias="formula" background="grey" hotkey="0" showAlias="true"/>
+          <Label value="Исемлек тармагы | Элемент списка |" alias="list-item" background="#BA55D3" hotkey="-" showAlias="true"/>
+          <Label value="Баш исем | Титульный заголовок |" alias="title" background="#800080" hotkey="=" showAlias="true"/>
         </RectangleLabels>
       </View>
   storages:

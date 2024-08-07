@@ -3,7 +3,7 @@ project:
   details:
     title: "Документның баш битен тамгалау | Document Layout"
     description: |
-      Бу проектта документның беренче бите генә тамгалана һәм монда гына башисем(title) әгъзасы бар
+      Бу проектта документның беренче баш бите генә тамгалана һәм монда гына башисем(title) тамагасы бар
     color: "#5234EB"
   storages:
     # `ls_storage_params` matches the Label Studio's `import_storage` and `export_storage` CREATE methods
